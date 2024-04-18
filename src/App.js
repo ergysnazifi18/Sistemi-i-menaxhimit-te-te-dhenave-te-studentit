@@ -35,7 +35,7 @@ function App() {
             <Route path="/register" element={<Registration />} />
             <Route path="/students" element={<StudentList />} />
             <Route path="/students/edit/:id" element={<StudentForm />} />
-            <Route path="/delete-confirmation" element={<DeleteConfirmation />} />
+            <Route path="/delete-confirmation/:id" element={<DeleteConfirmation />} />
             <Route path="/" element={<div>Welcome! Please navigate using the menu above.</div>} />
             <Route path="*" element={<Navigate to="/" replace />} /> {/* Redirect unknown paths */}
           </Routes>

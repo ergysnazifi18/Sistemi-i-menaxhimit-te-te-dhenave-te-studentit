@@ -1,18 +1,24 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { deleteStudent } from "../../data/students";
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { deleteStudent } from '../../data/students';
 
 const DeleteConfirmation = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    deleteStudent(id);
-    navigate("/students");
+    const { success } = deleteStudent(id);
+    if (success) {
+      // Redirect to the updated student list if deletion was successful
+      navigate('/students');
+    } else {
+      // Handle the error if the student was not found or deletion was unsuccessful
+      console.error('Error: Student not found or could not be deleted.');
+    }
   };
 
   const handleCancel = () => {
-    navigate(-1);
+    navigate(-1); // Go back to the previous page
   };
 
   return (

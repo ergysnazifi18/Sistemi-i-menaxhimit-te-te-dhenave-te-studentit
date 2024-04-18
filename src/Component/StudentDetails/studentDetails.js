@@ -54,7 +54,7 @@ const StudentDetails = () => {
       <label>Surname:</label>
       <input type="text" name="surname" value={student.surname} onChange={handleChange} />
       <label>Grade:</label>
-      <input type="number" name="grade" value={student.grade} onChange={handleChange} />
+      <input type="double" name="grade" value={student.grade} onChange={handleChange} />
       <label>Profession:</label>
       <input type="text" name="profession" value={student.profession} onChange={handleChange} />
       <label>Education:</label>

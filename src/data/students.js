@@ -34,7 +34,7 @@ const studentsData = [
 export const allCourses = [
   { name: "Special Arts" },
   { name: "Non-special arts" },
-  { name: "Simple Arts" }
+  { name: "Simple Arts" },
 ];
 
 export const getStudents = () => {
@@ -42,7 +42,12 @@ export const getStudents = () => {
 };
 
 export const addStudent = (student) => {
-  student.courses = allCourses.map(course => ({ ...course, subscribed: false, otherInfo: "", subscribeDate: "" }));
+  student.courses = allCourses.map((course) => ({
+    ...course,
+    subscribed: false,
+    otherInfo: "",
+    subscribeDate: "",
+  }));
   const exists = studentsData.some((s) => s.NID === student.NID);
   if (!exists) {
     student.id = studentsData.length + 1;
@@ -61,8 +66,13 @@ export const updateStudent = (updatedStudent) => {
   return { success: false, message: "Student not found." };
 };
 
-export const deleteStudent = (id) => {
-  const lengthBefore = studentsData.length;
-  studentsData = studentsData.filter((s) => s.id.toString() !== id);
-  return { success: studentsData.length < lengthBefore };
+export const deleteStudent = (idToDelete) => {
+  const index = studentsData.findIndex(
+    (student) => student.id.toString() === idToDelete
+  );
+  if (index !== -1) {
+    studentsData.splice(index, 1); // Remove the student from the array
+    return { success: true };
+  }
+  return { success: false, message: "Student not found." };
 };
