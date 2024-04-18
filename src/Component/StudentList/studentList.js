@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getStudents } from "../data/students";
+import { getStudents } from "../../data/students";
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
@@ -33,7 +33,9 @@ const StudentList = () => {
               <td>{student.name}</td>
               <td>{student.surname}</td>
               <td>
-                {student.courses.filter((course) => course.subscribed).length}
+                {student.courses
+                  ? student.courses.filter((course) => course.subscribed).length
+                  : 0}
               </td>
               <td>
                 <Link to={`/students/edit/${student.id}`}>Edit</Link> |

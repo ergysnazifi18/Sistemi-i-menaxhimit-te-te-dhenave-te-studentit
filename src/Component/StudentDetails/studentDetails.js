@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { getStudents, updateStudent } from '../data/students';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getStudents, updateStudent, allCourses } from '../../data/students';
 
 const StudentDetails = () => {
   const [student, setStudent] = useState(null);
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudent = async () => {
       const allStudents = await getStudents();
       const foundStudent = allStudents.find(s => s.id.toString() === id);
-      setStudent({ ...foundStudent });
+
+      const studentCourses = foundStudent
+        ? foundStudent.courses
+        : allCourses.map(course => ({ ...course, subscribed: false, otherInfo: "", subscribeDate: "" }));
+
+      setStudent({ ...foundStudent, courses: studentCourses });
     };
     fetchStudent();
   }, [id]);
@@ -31,11 +36,11 @@ const StudentDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateStudent(student);
-    history.push('/students');
+    navigate('/students');
   };
 
   const handleCancel = () => {
-    history.push('/students');
+    navigate('/students');
   };
 
   if (!student) return <div>Loading...</div>;

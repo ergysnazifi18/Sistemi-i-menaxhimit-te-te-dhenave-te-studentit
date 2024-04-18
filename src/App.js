@@ -5,9 +5,9 @@ import "./App.css";
 // Import the components
 import Login from "./Component/Login/login";
 import Registration from "./Component/Registration/registration";
-import StudentList from "./Component/StudentList/StudentList";
-import StudentForm from "./Component/StudentDetails/StudentDetails";
-import DeleteConfirmation from "./Component/DeleteConfirmation/DeleteConfirmation";
+import StudentList from "./Component/StudentList/studentList";
+import StudentForm from "./Component/StudentDetails/studentDetails";
+import DeleteConfirmation from "./Component/DeleteConfirmation/deleteConfirmation";
 
 function App() {
   return (

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { getStudents } from "../data/students"; // Import the mock data fetching function
+import { useNavigate } from "react-router-dom";
+import { getStudents } from '../../data/students'; // Import the mock data fetching function
 
 const Login = () => {
   const [NID, setNID] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory(); // Used for navigation after successful login
+  const navigate = useNavigate();// Used for navigation after successful login
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const Login = () => {
 
     if (student) {
       console.log("Logged in successfully:", student);
-      history.push("/students"); // Navigate to the student list page
+      navigate("/students"); // Navigate to the student list page
     } else {
       setError("There is no user with the same student credentials!");
     }

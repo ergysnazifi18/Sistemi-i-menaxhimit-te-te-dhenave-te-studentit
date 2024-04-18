@@ -31,11 +31,18 @@ const studentsData = [
   },
 ];
 
+export const allCourses = [
+  { name: "Special Arts" },
+  { name: "Non-special arts" },
+  { name: "Simple Arts" }
+];
+
 export const getStudents = () => {
   return Promise.resolve(studentsData);
 };
 
 export const addStudent = (student) => {
+  student.courses = allCourses.map(course => ({ ...course, subscribed: false, otherInfo: "", subscribeDate: "" }));
   const exists = studentsData.some((s) => s.NID === student.NID);
   if (!exists) {
     student.id = studentsData.length + 1;

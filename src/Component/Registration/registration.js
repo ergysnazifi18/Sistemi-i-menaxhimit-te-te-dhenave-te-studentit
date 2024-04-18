@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addStudent } from '../../data/students';
 
 const Register = () => {
@@ -8,7 +8,7 @@ const Register = () => {
   const [surname, setSurname] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -22,14 +22,14 @@ const Register = () => {
     const result = await addStudent({ NID, name, surname, password });
     if (result.success) {
       alert('You have successfully registered!');
-      history.push('/login'); 
+      navigate('/login'); 
     } else {
       setError(result.message || 'Failed to register.');
     }
   };
 
   const handleCancel = () => {
-    history.push('/login'); // Directly return to login on cancel
+    navigate('/login'); // Directly return to login on cancel
   };
 
   return (

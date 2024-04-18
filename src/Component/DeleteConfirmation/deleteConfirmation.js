@@ -1,18 +1,18 @@
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { deleteStudent } from "../../data/students";
 
 const DeleteConfirmation = () => {
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     deleteStudent(id);
-    history.push("/students");
+    navigate("/students");
   };
 
   const handleCancel = () => {
-    history.goBack();
+    navigate(-1);
   };
 
   return (
