@@ -1,0 +1,9 @@
+.login-container {
+  height:auto; 
+  min-height:100%;
+  overflow: hidden;
+}
+
+.error {
+  color: red;
+}

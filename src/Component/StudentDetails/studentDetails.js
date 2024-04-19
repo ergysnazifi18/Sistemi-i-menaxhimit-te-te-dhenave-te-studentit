@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getStudents, updateStudent, allCourses } from '../../data/students';
+import "./studentDetails.css";
 
 const StudentDetails = () => {
   const [student, setStudent] = useState(null);
@@ -46,30 +47,62 @@ const StudentDetails = () => {
   if (!student) return <div>Loading...</div>;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>NID:</label>
-      <input type="text" value={student.NID} readOnly />
-      <label>Name:</label>
-      <input type="text" name="name" value={student.name} onChange={handleChange} />
-      <label>Surname:</label>
-      <input type="text" name="surname" value={student.surname} onChange={handleChange} />
-      <label>Grade:</label>
-      <input type="double" name="grade" value={student.grade} onChange={handleChange} />
-      <label>Profession:</label>
-      <input type="text" name="profession" value={student.profession} onChange={handleChange} />
-      <label>Education:</label>
-      <input type="text" name="education" value={student.education} onChange={handleChange} />
-      <label>Password:</label>
-      <input type="password" name="password" value={student.password} onChange={handleChange} />
-      {student.courses.map(course => (
-        <div key={course.name}>
-          <label>{course.name}</label>
-          <input type="checkbox" name={course.name} checked={course.subscribed} onChange={handleChange} />
+    <div className="container mt-5 justify-content-center">
+      <h2 className="text-center mb-4">Student Details</h2>
+      <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="inputNID">NID:</label>
+            <input type="text" className="form-control" id="inputNID" value={student.NID} readOnly />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="inputName">Name:</label>
+            <input type="text" className="form-control" id="inputName" name="name" value={student.name} onChange={handleChange} required />
+          </div>
         </div>
-      ))}
-      <button type="submit">Save</button>
-      <button type="button" onClick={handleCancel}>Cancel</button>
-    </form>
+
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="inputSurname">Surname:</label>
+            <input type="text" className="form-control" id="inputSurname" name="surname" value={student.surname} onChange={handleChange} required />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="inputGrade">Grade:</label>
+            <input type="number" className="form-control" id="inputGrade" name="grade" value={student.grade} onChange={handleChange} required />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="inputProfession">Profession:</label>
+            <input type="text" className="form-control" id="inputProfession" name="profession" value={student.profession} onChange={handleChange} />
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="inputEducation">Education:</label>
+            <input type="text" className="form-control" id="inputEducation" name="education" value={student.education} onChange={handleChange} />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="inputPassword">Password:</label>
+          <input type="password" className="form-control" id="inputPassword" name="password" value={student.password} onChange={handleChange} required />
+        </div>
+
+        {student.courses.map(course => (
+          <div className="form-check row ms-1" key={course.name}>
+            <input className="form-check-input" type="checkbox" name={course.name} checked={course.subscribed} onChange={handleChange} id={`check-${course.name}`} />
+            <label className="form-check-label" htmlFor={`check-${course.name}`}>
+              {course.name}
+            </label>
+          </div>
+        ))}
+
+        <div className="form-group text-center">
+          <button type="submit" className="btn btn-primary mr-2">Save</button>
+          <button type="button" className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -6,22 +6,22 @@ const studentsData = [
     surname: "SurnameTest",
     grade: 9.55,
     profession: "Student",
-    education: "University of the Arts, 'Special Arts' branch",
+    education: "University of Epoka",
     courses: [
       {
-        name: "Special Arts",
+        name: "Mathematics",
         subscribed: true,
         otherInfo: "",
         subscribeDate: "2022-04-01",
       },
       {
-        name: "Non-special arts",
+        name: "Spanish",
         subscribed: true,
         otherInfo: "",
         subscribeDate: "2022-05-12",
       },
       {
-        name: "Simple Arts",
+        name: "Geographics",
         subscribed: false,
         otherInfo: "",
         subscribeDate: "",
@@ -32,9 +32,9 @@ const studentsData = [
 ];
 
 export const allCourses = [
-  { name: "Special Arts" },
-  { name: "Non-special arts" },
-  { name: "Simple Arts" },
+  { name: "Mathematics" },
+  { name: "Spanish" },
+  { name: "Geographics" },
 ];
 
 export const getStudents = () => {
@@ -71,7 +71,7 @@ export const deleteStudent = (idToDelete) => {
     (student) => student.id.toString() === idToDelete
   );
   if (index !== -1) {
-    studentsData.splice(index, 1); // Remove the student from the array
+    studentsData.splice(index, 1); 
     return { success: true };
   }
   return { success: false, message: "Student not found." };

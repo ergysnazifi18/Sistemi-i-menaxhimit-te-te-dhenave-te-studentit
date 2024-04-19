@@ -1,0 +1,13 @@
+.nav-items{
+    justify-content: end;
+}
+
+.navbar{
+    background-color: darkslategray;
+    height: 5rem;
+}
+
+.image{
+    width: 45px;
+    margin: 8px;
+}

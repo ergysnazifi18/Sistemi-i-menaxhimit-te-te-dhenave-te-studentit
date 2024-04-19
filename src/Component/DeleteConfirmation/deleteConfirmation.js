@@ -9,16 +9,14 @@ const DeleteConfirmation = () => {
   const handleDelete = () => {
     const { success } = deleteStudent(id);
     if (success) {
-      // Redirect to the updated student list if deletion was successful
       navigate('/students');
     } else {
-      // Handle the error if the student was not found or deletion was unsuccessful
       console.error('Error: Student not found or could not be deleted.');
     }
   };
 
   const handleCancel = () => {
-    navigate(-1); // Go back to the previous page
+    navigate(-1);
   };
 
   return (
